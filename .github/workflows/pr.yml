@@ -38,4 +38,4 @@ jobs:
         run: cd ${{ runner.temp }}\testcli && react-native link react-native-device-info
 
       - name: Build Windows Solution
-        run: msbuild ${{ runner.temp }}\testcli\windows\testcli\testcli.sln /nologo /nr:false /p:PreferredToolArchitecture=x64 /p:platform="x86" /p:configuration="Debug"
+        run: msbuild ${{ runner.temp }}\testcli\windows\testcli.sln /nologo /nr:false /p:PreferredToolArchitecture=x64 /p:platform="x86" /p:configuration="Debug"
