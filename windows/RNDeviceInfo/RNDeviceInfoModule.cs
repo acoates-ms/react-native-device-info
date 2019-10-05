@@ -17,6 +17,20 @@ namespace RNDeviceInfo
         public RNDeviceInfoModule(ReactContext reactContext)
             : base(reactContext)
         {
+
+            _constants = new JObject
+            {
+                { "uniqueId", getUniqueIdSync() },
+                { "deviceId", getDeviceIdSync() },
+                { "bundleId", getBundleIdSync() },
+                { "systemVersion", getSystemVersionSync() },
+                { "appVersion", getAppVersionSync() },
+                { "buildNumber", getBuildNumberSync() },
+                { "isTablet", isTabletSync() },
+                { "appName", getAppNameSync() },
+                { "brand", getBrandSync() },
+                { "model", getModelSync() },
+            };
         }
 
         public override string Name
@@ -24,6 +38,14 @@ namespace RNDeviceInfo
             get
             {
                 return "RNDeviceInfo";
+            }
+        }
+
+        public override JObject ModuleConstants
+        {
+            get
+            {
+                return _constants;
             }
         }
 
