@@ -9,6 +9,7 @@ using Windows.Security.Credentials.UI;
 using Windows.Networking;
 using Windows.Networking.Connectivity;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace RNDeviceInfo
 {
@@ -17,20 +18,6 @@ namespace RNDeviceInfo
         public RNDeviceInfoModule(ReactContext reactContext)
             : base(reactContext)
         {
-
-            _constants = new JObject
-            {
-                { "uniqueId", getUniqueIdSync() },
-                { "deviceId", getDeviceIdSync() },
-                { "bundleId", getBundleIdSync() },
-                { "systemVersion", getSystemVersionSync() },
-                { "appVersion", getAppVersionSync() },
-                { "buildNumber", getBuildNumberSync() },
-                { "isTablet", isTabletSync() },
-                { "appName", getAppNameSync() },
-                { "brand", getBrandSync() },
-                { "model", getModelSync() },
-            };
         }
 
         public override string Name
@@ -45,7 +32,19 @@ namespace RNDeviceInfo
         {
             get
             {
-                return _constants;
+                return new JObject
+                {
+                    { "uniqueId", getUniqueIdSync() },
+                    { "deviceId", getDeviceIdSync() },
+                    { "bundleId", getBundleIdSync() },
+                    { "systemVersion", getSystemVersionSync() },
+                    { "appVersion", getAppVersionSync() },
+                    { "buildNumber", getBuildNumberSync() },
+                    { "isTablet", isTabletSync() },
+                    { "appName", getAppNameSync() },
+                    { "brand", getBrandSync() },
+                    { "model", getModelSync() },
+                };
             }
         }
 
