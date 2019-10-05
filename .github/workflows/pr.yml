@@ -29,7 +29,7 @@ jobs:
         run: cd ${{ runner.temp }}\testcli && yarn add rnpm-plugin-windows
 
       - name: Apply windows template
-        run: cd ${{ runner.temp }}\testcli && react-native windows --template current
+        run: cd ${{ runner.temp }}\testcli && react-native windows
 
       - name: install react-native-device-info from local repo
         run: cd ${{ runner.temp }}\testcli && yarn add react-native-device-info@file:${{ runner.workspace }}\react-native-device-info
