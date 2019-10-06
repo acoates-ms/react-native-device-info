@@ -38,8 +38,11 @@ jobs:
         run: cd ${{ runner.temp }}\testcli && react-native link react-native-device-info
 
       - name: Dont build ReactNativeWebViewBridge project
-        run: Select-String -pattern "{7596216B-669C-41F8-86DA-F3637F6545C0}.Debug|x86.Build.0" -notmatch -LiteralPath ${{ runner.temp }}\testcli\windows\testcli.sln | Select-Object -ExpandProperty Line | Out-File ${{ runner.temp }}\testcli\windows\testcli.sln
+        run: Select-String -pattern "{7596216B-669C-41F8-86DA-F3637F6545C0}.Debug|x86.Build.0" -NotMatch -SimpleMatch -LiteralPath ${{ runner.temp }}\testcli\windows\testcli.sln | Select-Object -ExpandProperty Line | Out-File ${{ runner.temp }}\testcli\windows\testcli.sln2
         shell: powershell
+
+      - name: Dont build ReactNativeWebViewBridge project part 2
+        run: copy ${{ runner.temp }}\testcli\windows\testcli.sln2 ${{ runner.temp }}\testcli\windows\testcli.sln
 
       - name: Build Windows Solution
         run: msbuild ${{ runner.temp }}\testcli\windows\testcli\testcli.csproj /nologo /nr:false /p:PreferredToolArchitecture=x64 /p:platform="x86" /p:configuration="Debug"
